@@ -1,0 +1,18 @@
+---
+:backends:
+  - yaml
+
+:hierarchy:
+  - "certname/%{::clientcert}"
+  - "cluster/%{::cluster}"
+  - "role/%{::role}"
+  - "topic/%{::topic}"
+  - "location/%{::location}"
+  - "common"
+
+:yaml:
+  :datadir: /home/vagrant/kitchen/hiera
+
+# options are native, deep, deeper
+:merge_behavior: deeper
+

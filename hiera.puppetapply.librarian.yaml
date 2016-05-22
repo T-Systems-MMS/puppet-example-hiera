@@ -1,0 +1,18 @@
+---
+:backends:
+  - yaml
+
+:hierarchy:
+  - "certname/%{::clientcert}"
+  - "cluster/%{::cluster}"
+  - "role/%{::role}"
+  - "topic/%{::topic}"
+  - "location/%{::location}"
+  - "common"
+
+:yaml:
+  :datadir: /var/tmp/puppet/r10k/hieradata/
+
+# options are native, deep, deeper
+:merge_behavior: deeper
+
