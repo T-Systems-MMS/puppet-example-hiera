@@ -6,22 +6,24 @@
 :logger: puppet
 
 :hierarchy:
-  - "%{::environment}/hieradata/certname/%{::clientcert}"
-  - "%{::environment}/hieradata/cluster/%{::cluster}"
-  - "%{::environment}/hieradata/role/%{::role}"
-  - "%{::environment}/hieradata/topic/%{::topic}"
-  - "%{::environment}/hieradata/location/%{::location}"
-  - "%{::environment}/hieradata/common"
+  - "certname/%{::trusted.certname}"
+  - "cluster/%{::cluster}"
+  - "role/%{::role}"
+  - "topic/%{::topic}"
+  - "location/%{::location}"
+  - "common"
 
 :eyaml:
-  :datadir: /etc/puppet/environments
-  :pkcs7_private_key: /etc/puppet/keys/puppetmaster_eyaml_private.pkcs7.pem
-  :pkcs7_public_key:  /etc/puppet/keys/puppetmaster_eyaml_public.pkcs7.pem
+  :datadir: /etc/puppetlabs/code/environments/%{server_facts.environment}/hieradata
+  :pkcs7_private_key: /etc/puppetlabs/puppet/keys/puppetmaster_eyaml_private.pkcs7.pem
+  :pkcs7_public_key:  /etc/puppetlabs/puppet/keys/puppetmaster_eyaml_public.pkcs7.pem
   :extension: 'yaml'
 
 :yaml:
-  :datadir: /etc/puppet/environments/
+  :datadir: /etc/puppetlans/code/environments/%{server_facts.environment}/hieradata
 
 # options are native, deep, deeper
 :merge_behavior: deeper
+:deep_merge_options:
+  :knockout_prefix: '--'
 
