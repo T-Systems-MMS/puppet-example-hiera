@@ -1,9 +1,10 @@
 ---
 :backends:
+#  - eyaml
   - yaml
 
 :hierarchy:
-  - "certname/%{::clientcert}"
+  - "certname/%{::trusted.certname}"
   - "cluster/%{::cluster}"
   - "role/%{::role}"
   - "topic/%{::topic}"
@@ -11,8 +12,15 @@
   - "common"
 
 :yaml:
-  :datadir: /home/vagrant/kitchen/hiera
+  :datadir: /opt/provision/hiera
+  
+#:eyaml:
+#  :datadir: /opt/provision/hiera
+#  :pkcs7_private_key: /opt/provision/hiera_keys/private_key.pkcs7.pem
+#  :pkcs7_public_key: /opt/provision/hiera_keys/public_key.pkcs7.pem
+#  :extension: 'yaml'
 
 # options are native, deep, deeper
 :merge_behavior: deeper
-
+:deep_merge_options:
+  :knockout_prefix: '--'
